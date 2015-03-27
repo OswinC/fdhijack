@@ -1,0 +1,26 @@
+Usage:
+(After gather chfd, fdhj.ko, fdhj_load in a directory)
+	$ ./fdhj_load [fdhj_major=<major>]
+	$ ./chfd <pid> <fd> <file> [keep mode: 0 | 1]
+        Keep mode: Do not exit after change fds, this can provide the opportunity
+                   to change back the fd afterward. If 1 is specified, press enter
+				   to exchange the fds again; and enter exit to exit.
+
+scr/fdhj_load is a script for loading the kernel module fdhj 
+and create the corresponding device node /dev/fdhj 
+
+fdhj_<platform> are the kernel modules for operating file
+objects in kernel
+
+src/libfdhj.c is the library for wrapping the fdhj module for applications
+
+inc/ceh.h and src/ceh.c wrap setjmp() and longjmp() to be a
+try...catch-style error handling framework in C
+
+app/chfd is the user utility for changing a process's fd to
+point to another existant file (device)
+
+app/xchfd is not implemented yet
+
+The major number for fdhj is dynamically allocated if not
+specified on calling fdhj_load with the argument fdhj_major=<major>
