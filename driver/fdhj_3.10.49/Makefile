@@ -11,11 +11,11 @@ export CC
 obj-m := fdhj.o
 MODULE = fdhj.ko
 
-CFLAGS_fdhj.o += -I$(PWD)/../inc
+CFLAGS_fdhj.o += -I$(PWD)/../../inc
 export CFLAGS_fdhj.o
 
 default:
-	$(MAKE) ARCH=arm CROSS_COMPILE=arm-linux- -C $(KERNELROOT) O=$(PRODUCTDIR)/tmp M=$(PWD) modules
+	$(MAKE) ARCH=arm CROSS_COMPILE=arm-linux- -C $(KERNELSRC) O=$(PRODUCTDIR)/tmp/kernel M=$(PWD) modules
 clean:
 	rm -rf *.ko *.o *.mod.* *.symvers *.c~ .mod* .fdhj* .test* .tmp* modules.order
 cleantmp:
